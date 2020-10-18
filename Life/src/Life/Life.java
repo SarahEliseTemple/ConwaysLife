@@ -56,7 +56,12 @@ public class Life implements MouseListener {
 	@Override
 	public void mouseReleased(MouseEvent event) {//this is the one we are using
 		System.out.println(event.getX() + "," + event.getY());
-		
+		double Pwidth = (double)panel.getWidth() / cells[0].length;
+		double Pheight = (double)panel.getHeight() / cells.length;
+		int column = Math.min(cells[0].length-1,(int)(event.getX()/Pwidth));
+		int row =  Math.min(cells.length-1,(int) (event.getY()/Pheight));
+		System.out.println(column +"," + row);
+		cells[row][column] = !cells[row][column];
 	}
 
 }
