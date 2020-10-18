@@ -1,9 +1,9 @@
 package Life;
-
+/*Panel for Conway's Life Simulation This draws the grids and cells
+ * Author Sarah With the videos from class
+ */
 import java.awt.Color;
 import java.awt.Graphics;
-import java.lang.reflect.Array;
-
 import javax.swing.JPanel;
 
 public class LifePanel extends JPanel {
@@ -18,6 +18,8 @@ public class LifePanel extends JPanel {
 		width = (double)this.getWidth() / cells[0].length;
 		height = (double)this.getHeight() / cells.length;
 		
+		
+		//draw the cells
 		g.setColor(Color.BLUE);//"That seems pretty unoffensive" - Mr. Galbraith
 		for(int rows = 0; rows < cells.length; rows++ ) {
 			for(int columns = 0; columns < cells[0].length; columns++ ) {
@@ -28,6 +30,7 @@ public class LifePanel extends JPanel {
 			}
 		}
 		
+		//draw the lines
 		g.setColor(Color.BLACK);
 		for (int x=0; x < cells[0].length+1; x++) {
 			g.drawLine((int)(Math.round(x*width)), 0, (int)(Math.round(x*width)), this.getHeight());
