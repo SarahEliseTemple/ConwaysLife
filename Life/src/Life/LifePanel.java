@@ -22,8 +22,8 @@ public class LifePanel extends JPanel {
 		for(int rows = 0; rows < cells.length; rows++ ) {
 			for(int columns = 0; columns < cells[0].length; columns++ ) {
 				if(cells[rows][columns] == true) {
-					g.fillRect((int)(columns*width), (int)(rows*height),
-							(int)width, (int)height);
+					g.fillRect((int)Math.round(columns*width), (int)Math.round(rows*height),
+							(int)width+1, (int)height+1);
 				}
 			}
 		}
