@@ -29,12 +29,13 @@ public class Life implements MouseListener, ActionListener {
 	
 	//Constructor
 	public Life() {
-		frame.setSize(800,800);
+		frame.setSize(600,600);
 		frame.setLayout(new BorderLayout());
 		frame.add(panel, BorderLayout.CENTER);
 		panel.addMouseListener(this);
 		
 		//south Container
+		frame.add(south, BorderLayout.SOUTH);
 		south.setLayout(new GridLayout(1,3));
 		south.add(step);
 		step.addActionListener(this);
@@ -91,8 +92,75 @@ public class Life implements MouseListener, ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		if (event.getSource().equals(step)) {
-			
+			System.out.println("Step");
+			step();
 		}
+		if (event.getSource().equals(start)) {
+			System.out.println("Start");
+		}
+		if (event.getSource().equals(stop)) {
+			System.out.println("Stop");
+		}
+	}
+
+	/*
+	 * row - 1,column-1              row-1,column            row-1,column+1
+	 * row, column-1                       me                row, column +1
+	 * row +1, column - 1            row +1, column           row+1, column+1
+	 */
+	public void step() {
+		boolean[][] nextCells = new boolean [cells.length][cells[0].length];
+		for (int row = 0; row < cells.length; row++) {
+			for (int column = 0; column < cells[0].length; column++) {
+				int neighborCount = 0;
+				if (row>0 && cells[row-1][column-1]) {//up left
+					neighborCount++;
+				}
+				if (row > 0 && cells[row-1][column] == true) {
+					neighborCount++;
+				}
+				if (row>0 && column<cells[0].length-1&& cells[row-1][column+1]) {
+					neighborCount++;
+				}
+				if (column>0 && cells[row][column-1]) {
+					neighborCount++;
+				}
+				if (column<cells[0].length-1 && cells[row][column+1]) {
+					neighborCount++;
+				}
+				if (row<cells.length-1 && column>0 && cells[row+1][column-1]) {
+					neighborCount++;
+				}
+				if (row<cells.length-1 && cells[row+1][column]) {
+					neighborCount++;
+				}
+				if (row<cells.length-1 && column<cells[0].length-1 &&cells[row+1][column+1]) {
+					neighborCount++;
+				}
+				
+				
+				//Rules of Life
+				if(cells[row][column] == true) { // Im alive!!
+					if (neighborCount == 2 || neighborCount == 3) {
+						nextCells[row][column] = true; //alive next time
+					}
+					else {
+						nextCells[row][column] = false; //ded
+					}
+				}
+				else {
+					if (neighborCount == 3) {
+						nextCells[row][column] = true;
+					}
+					else {
+						nextCells[row][column] = false;
+					}
+				}
+			}
+		}
+		cells = nextCells;
+		panel.setCells(nextCells);
+		frame.repaint();
 	}
 
 }

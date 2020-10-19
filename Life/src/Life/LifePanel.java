@@ -13,6 +13,11 @@ public class LifePanel extends JPanel {
 	public LifePanel(boolean[][] in) {
 		cells = in;
 	}
+	
+	public void setCells(boolean[][] newCells) {
+		cells = newCells;
+	}
+	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		width = (double)this.getWidth() / cells[0].length;
