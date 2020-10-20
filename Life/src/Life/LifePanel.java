@@ -14,11 +14,11 @@ public class LifePanel extends JPanel {
 		cells = in;
 	}
 	
-	public void setCells(boolean[][] newCells) {
+	public void setCells(boolean[][] newCells) {// This resets the cells in here. with step on the other side
 		cells = newCells;
 	}
 	
-	public void paintComponent(Graphics g) {
+	public void paintComponent(Graphics g) {//This draws the grid and the boxes/ 
 		super.paintComponent(g);
 		width = (double)this.getWidth() / cells[0].length;
 		height = (double)this.getHeight() / cells.length;
